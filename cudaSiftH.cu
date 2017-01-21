@@ -223,7 +223,6 @@ void PrintSiftData(SiftData &data)
 #else
   SiftPoint *h_data = data.h_data;
   if (data.h_data==NULL) {
-    h_data = (SiftPoint *)malloc(sizeof(SiftPoint)*data.maxPts);
     safeCall(cudaMallocHost((void **)&h_data, sizeof(SiftPoint)*data.maxPts));
     safeCall(cudaMemcpy(h_data, data.d_data, sizeof(SiftPoint)*data.numPts, cudaMemcpyDeviceToHost));
     data.h_data = h_data;
